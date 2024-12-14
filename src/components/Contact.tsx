@@ -10,7 +10,31 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar o formulário
+    // lógica para enviar o formulário de email
+    const sendFormData = async () => {
+      try {
+      const response = await fetch('https://your-api-endpoint.com/contact', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('Formulário enviado com sucesso:', result);
+      setFormData({ name: '', email: '', message: '' });
+      } catch (error) {
+      console.error('Erro ao enviar o formulário:', error);
+      alert('Formulário enviado com sucesso!');
+      }
+    };
+
+    sendFormData();
     console.log('Formulário enviado:', formData);
   };
 
