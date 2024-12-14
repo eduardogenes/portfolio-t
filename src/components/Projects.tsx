@@ -25,6 +25,14 @@ const projects = [
     tech: ['React', 'OpenWeather API', 'Chart.js'],
     github: 'https://github.com',
     live: 'https://projeto3.com'
+  },
+  {
+    title: 'Calculadora de Tarifas Interna',
+    description: 'Ferramenta desenvolvida para automatizar cálculos de tarifas e orçamentos, otimizando processos internos.',
+    image: 'https://via.placeholder.com/400x300',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/eduardogenes/calculadora-tarifas',
+    live: null
   }
 ];
 
@@ -64,15 +72,17 @@ export default function Projects() {
                     <Github size={20} />
                     <span>Código</span>
                   </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
-                  >
-                    <ExternalLink size={20} />
-                    <span>Demo</span>
-                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                    >
+                      <ExternalLink size={20} />
+                      <span>Demo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

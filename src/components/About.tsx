@@ -15,13 +15,13 @@ export default function About() {
           </div>
           <div className="w-full md:w-1/2">
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Olá! Sou um desenvolvedor web apaixonado por criar soluções digitais inovadoras. 
-              Com foco em desenvolvimento front-end, busco constantemente aprender novas tecnologias 
-              e aprimorar minhas habilidades.
+              Olá! Sou Eduardo Genes, desenvolvedor web apaixonado por criar soluções digitais inovadoras. 
+              Com experiência em desenvolvimento front-end, utilizo tecnologias como React, Tailwind CSS e Node.js 
+              para criar interfaces responsivas e de alta performance.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Meu objetivo é contribuir para projetos desafiadores que me permitam crescer 
-              profissionalmente enquanto crio experiências digitais excepcionais para os usuários.
+              Sou formado em Desenvolvimento Web Full-Stack e tenho conhecimento em DevOps, com foco em Kubernetes e CI/CD. 
+              Busco contribuir para projetos desafiadores que promovam inovação e excelente experiência do usuário.
             </p>
             <div className="flex gap-4">
               <a
@@ -31,7 +31,7 @@ export default function About() {
                 Entre em Contato
               </a>
               <a
-                href="/cv.pdf"
+                href="/eduardo_genes_curriculo_web_junior.pdf"
                 className="px-6 py-3 border border-accent-blue text-accent-blue dark:text-accent-blue rounded-md hover:bg-accent-blue/10 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

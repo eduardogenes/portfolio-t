@@ -11,7 +11,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para enviar o formulário
-    console.log('Form submitted:', formData);
+    console.log('Formulário enviado:', formData);
   };
 
   return (
@@ -23,20 +23,20 @@ export default function Contact() {
             <h3 className="text-xl font-bold mb-6">Vamos conversar!</h3>
             <p className="text-gray-600 mb-8">
               Estou sempre aberto a novas oportunidades e parcerias. 
-              Entre em contato comigo através do formulário ou use as informações abaixo.
+              Sinta-se à vontade para entrar em contato comigo pelo formulário ou pelas informações abaixo.
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Mail className="text-blue-600" size={20} />
-                <span className="text-gray-600">seu@email.com</span>
+                <span className="text-gray-600">eduardogenes95@gmail.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="text-blue-600" size={20} />
-                <span className="text-gray-600">(11) 99999-9999</span>
+                <span className="text-gray-600">(85) 98109-7155</span>
               </div>
               <div className="flex items-center gap-4">
                 <MapPin className="text-blue-600" size={20} />
-                <span className="text-gray-600">São Paulo, SP</span>
+                <span className="text-gray-600">Fortaleza, CE</span>
               </div>
             </div>
           </div>
@@ -48,6 +48,7 @@ export default function Contact() {
               <input
                 type="text"
                 id="name"
+                placeholder="Digite seu nome"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -61,6 +62,7 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
+                placeholder="Digite seu email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -74,6 +76,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 rows={4}
+                placeholder="Escreva sua mensagem"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}

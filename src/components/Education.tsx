@@ -13,9 +13,9 @@ export default function Education() {
                 <GraduationCap className="text-blue-600" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Bacharelado em Ciência da Computação</h3>
-                <p className="text-gray-600">Universidade Federal do Brasil</p>
-                <p className="text-gray-500">2020 - 2024</p>
+                <h3 className="text-xl font-bold mb-2">Análise e Desenvolvimento de Sistemas</h3>
+                <p className="text-gray-600">UNESA – Fortaleza</p>
+                <p className="text-gray-500">Formação prevista para 2025</p>
               </div>
             </div>
           </div>
@@ -29,19 +29,24 @@ export default function Education() {
                 <h3 className="text-xl font-bold mb-2">Certificações</h3>
                 <ul className="space-y-4">
                   <li>
-                    <h4 className="font-medium">Web Development Bootcamp</h4>
-                    <p className="text-gray-600">Udemy</p>
-                    <p className="text-gray-500">2023</p>
-                  </li>
-                  <li>
-                    <h4 className="font-medium">React Developer Certificate</h4>
-                    <p className="text-gray-600">Meta</p>
-                    <p className="text-gray-500">2023</p>
-                  </li>
-                  <li>
-                    <h4 className="font-medium">JavaScript Algorithms and Data Structures</h4>
-                    <p className="text-gray-600">freeCodeCamp</p>
+                    <h4 className="font-medium">Desenvolvimento Web Full-Stack</h4>
+                    <p className="text-gray-600">Infinity School – Fortaleza</p>
                     <p className="text-gray-500">2022</p>
+                  </li>
+                  <li>
+                    <h4 className="font-medium">DevOps</h4>
+                    <p className="text-gray-600">Atlantico Avanti – Fortaleza</p>
+                    <p className="text-gray-500">2023</p>
+                  </li>
+                  <li>
+                    <h4 className="font-medium">Curso.dev</h4>
+                    <p className="text-gray-600">Filipe Deschamps</p>
+                    <p className="text-gray-500">Em andamento</p>
+                  </li>
+                  <li>
+                    <h4 className="font-medium">AWS Certified AI Practitioner</h4>
+                    <p className="text-gray-600">Escola da Nuvem</p>
+                    <p className="text-gray-500">Em andamento</p>
                   </li>
                 </ul>
               </div>

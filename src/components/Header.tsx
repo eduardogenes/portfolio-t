@@ -9,8 +9,8 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm transition-colors">
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">João Silva</h1>
-          
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Eduardo Genes</h1>
+
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <button
@@ -32,16 +32,16 @@ export default function Header() {
             <a href="#contato" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contato</a>
             
             <div className="flex items-center gap-4 md:ml-6">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="https://github.com/eduardogenes" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <Github size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="https://linkedin.com/in/eduardogenes" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:seu@email.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="mailto:eduardogenes95@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <Mail size={20} />
               </a>
-              <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="/eduardo_genes_curriculo_web_junior.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <FileText size={20} />
               </a>
             </div>

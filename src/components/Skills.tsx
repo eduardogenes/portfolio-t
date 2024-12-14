@@ -1,14 +1,15 @@
 import React from 'react';
 
 const skills = [
-  { name: 'HTML5', level: 90 },
-  { name: 'CSS3', level: 85 },
+  { name: 'React', level: 80 },
   { name: 'JavaScript', level: 80 },
-  { name: 'React', level: 75 },
-  { name: 'TypeScript', level: 70 },
-  { name: 'Tailwind CSS', level: 85 },
-  { name: 'Git', level: 75 },
-  { name: 'Responsive Design', level: 90 },
+  { name: 'HTML5 e CSS3', level: 90 },
+  { name: 'Testes (Jest)', level: 70 },
+  { name: 'Responsive Design', level: 80 },
+  { name: 'Git', level: 85 },
+  { name: 'Node.js', level: 70 },
+  { name: 'TypeScript', level: 60 },
+  { name: 'DevOps (CI/CD)', level: 50 },
 ];
 
 export default function Skills() {
@@ -18,7 +19,10 @@ export default function Skills() {
         <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Habilidades Técnicas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skills.map((skill) => (
-            <div key={skill.name} className="bg-white dark:bg-dark-700 p-6 rounded-lg shadow-sm dark:shadow-accent-blue/10 hover:shadow-md dark:hover:shadow-accent-blue/20 transition-all duration-300">
+            <div
+              key={skill.name}
+              className="bg-white dark:bg-dark-700 p-6 rounded-lg shadow-sm dark:shadow-accent-blue/10 hover:shadow-md dark:hover:shadow-accent-blue/20 transition-all duration-300"
+            >
               <div className="flex justify-between mb-2">
                 <span className="font-medium text-gray-700 dark:text-gray-200">{skill.name}</span>
                 <span className="text-gray-500 dark:text-gray-400">{skill.level}%</span>
