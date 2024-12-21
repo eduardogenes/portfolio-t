@@ -1,31 +1,45 @@
-import React from 'react';
-import { ThemeProvider } from './contexts/ThemeContext';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
+import { useEffect, useState } from 'react'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import About from './components/About'
+import Projects from './components/Projects'
+import Skills from './components/Skills'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import { ThemeProvider } from './contexts/ThemeContext'
 
-function App() {
-  return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors">
-        <div className="dark:bg-gradient-to-b dark:from-dark-900 dark:via-dark-800 dark:to-dark-900">
-          <Header />
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Education />
-            <Contact />
-          </main>
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Simula um tempo de carregamento mínimo para a tela de loading
+    const timer = setTimeout(() => setIsLoading(false), 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-gray-900">
+        <div className="animate-pulse text-4xl font-bold text-blue-500">
+          Carregando...
         </div>
       </div>
-    </ThemeProvider>
-  );
-}
+    )
+  }
 
-export default App;
+  return (
+    <ThemeProvider>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
+  )
+}

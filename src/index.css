@@ -1,3 +1,43 @@
-@tailwind base;
-@tailwind components;
+/* Importa estilos base */
+@import './styles/base.css';
+
+/* Importa estilos dos componentes */
+@import './styles/components/header.css';
+@import './styles/components/hero.css';
+@import './styles/components/skills.css';
+
+/* Mantém o Tailwind para utilitários */
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section-highlight {
+  position: relative;
+}
+
+.section-highlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  animation: highlightFade 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+@keyframes highlightFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
