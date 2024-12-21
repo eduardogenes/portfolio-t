@@ -13,7 +13,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, animate } from 'framer-motion'
 import { useScrollNavigation } from '../hooks/useScrollNavigation'
 
 export default function Header() {
@@ -48,7 +48,7 @@ export default function Header() {
         const element = document.getElementById(section)
         if (!element) continue
 
-        const offsetTop = element.offsetTop
+        const offsetTop = element.offsetTop - 100 // Ajustando offset para considerar o header
         const offsetBottom = offsetTop + element.offsetHeight
 
         if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
@@ -59,8 +59,34 @@ export default function Header() {
     }
 
     window.addEventListener('scroll', handleActiveSection)
+    handleActiveSection() // Chamando uma vez ao montar para definir seção inicial
     return () => window.removeEventListener('scroll', handleActiveSection)
   }, [])
+
+  // Função para lidar com cliques nos links
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const targetId = href.substring(1)
+    const element = document.getElementById(targetId)
+    
+    if (element) {
+      const header = document.querySelector('header')
+      const headerOffset = header ? header.offsetHeight : 0
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      animate(window.scrollY, offsetPosition, {
+        duration: 0.8,
+        ease: [0.32, 0.72, 0, 1],
+        onUpdate: (value) => {
+          window.scrollTo(0, value)
+        }
+      })
+      
+      setIsMenuOpen(false)
+      setActiveSection(targetId)
+    }
+  }
 
   // Array com itens do menu de navegação
   const menuItems = [
@@ -97,6 +123,7 @@ export default function Header() {
               <motion.a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleLinkClick(e, item.href)}
                 className={`relative px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors rounded-lg ${
                   activeSection === item.href.substring(1)
                     ? 'text-blue-500 dark:text-blue-400'
@@ -195,12 +222,12 @@ export default function Header() {
                 <motion.a
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                   className={`block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${
                     activeSection === item.href.substring(1)
                       ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400'
                       : ''
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
