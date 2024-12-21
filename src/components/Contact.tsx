@@ -1,18 +1,38 @@
+/**
+ * Contact.tsx
+ * Componente de formulário de contato com integração EmailJS e animações.
+ * 
+ * Funcionalidades:
+ * - Formulário de contato interativo
+ * - Integração com EmailJS para envio de emails
+ * - Animações usando Framer Motion
+ * - Feedback visual de sucesso/erro
+ * - Informações de contato com ícones
+ */
+
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 
 export default function Contact() {
+  // Referência para o formulário
   const formRef = useRef<HTMLFormElement>(null);
+  
+  // Estados para controle de UI
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  // Inicializa o EmailJS com a chave pública
   useEffect(() => {
     emailjs.init('heb98utZ3Qz_MHPoR');
   }, []);
 
+  /**
+   * Manipula o envio do formulário
+   * @param e - Evento do formulário
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
@@ -45,6 +65,7 @@ export default function Contact() {
     }
   };
 
+  // Array com informações de contato
   const contactInfo = [
     {
       icon: <FiMail className="w-6 h-6" />,
@@ -63,6 +84,7 @@ export default function Contact() {
     }
   ];
 
+  // Configurações de animação para o container
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,6 +95,7 @@ export default function Contact() {
     }
   };
 
+  // Configurações de animação para os itens
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -116,7 +139,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <motion.div variants={itemVariants} className="space-y-6">
-              {contactInfo.map((info, index) => (
+              {contactInfo.map((info) => (
                 <motion.a
                   key={info.text}
                   href={info.href}
@@ -144,7 +167,7 @@ export default function Contact() {
               <p className="text-gray-600 dark:text-gray-300">
                 Segunda - Sexta
                 <br />
-                9:00 - 18:00
+                8:00 - 18:00
               </p>
             </motion.div>
           </motion.div>

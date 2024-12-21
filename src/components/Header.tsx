@@ -1,3 +1,15 @@
+/**
+ * Header.tsx
+ * Componente de cabeçalho responsivo com navegação e controle de tema.
+ * 
+ * Funcionalidades:
+ * - Navegação responsiva com menu mobile
+ * - Alternância entre temas claro/escuro
+ * - Detecção de seção ativa durante scroll
+ * - Animações suaves usando Framer Motion
+ * - Menu hamburguer para dispositivos móveis
+ */
+
 import { useState, useEffect } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
@@ -5,19 +17,28 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollNavigation } from '../hooks/useScrollNavigation'
 
 export default function Header() {
+  // Estados para controle da UI
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const { theme, toggleTheme } = useTheme()
 
+  // Hook personalizado para navegação por scroll
   useScrollNavigation()
 
+  /**
+   * Efeito para detectar scroll e adicionar sombra ao header
+   */
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  /**
+   * Efeito para detectar a seção ativa durante o scroll
+   * Atualiza o estado activeSection baseado na posição da janela
+   */
   useEffect(() => {
     const handleActiveSection = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'contact']
@@ -41,6 +62,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleActiveSection)
   }, [])
 
+  // Array com itens do menu de navegação
   const menuItems = [
     { label: 'Início', href: '#home' },
     { label: 'Sobre', href: '#about' },

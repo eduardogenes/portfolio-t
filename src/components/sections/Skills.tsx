@@ -1,4 +1,3 @@
-import React from 'react';
 import SkillCard from '../ui/SkillCard';
 
 const skills = [

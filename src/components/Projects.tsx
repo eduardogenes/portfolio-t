@@ -1,6 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion'
-import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 const projects = [
   {
@@ -108,7 +107,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={cardVariants}

@@ -26,7 +26,7 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm transition-colors">
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">João Silva</h1>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Eduardo Genes</h1>
           
           <div className="flex items-center gap-4">
             <ThemeToggle />
