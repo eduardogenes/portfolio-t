@@ -20,7 +20,7 @@ export default function Hero() {
     },
     {
       icon: <FiFileText className="w-6 h-6" />,
-      href: '/eduardo_genes_curriculo_web_junior.pdf',
+      href: '../../../public/assets/eduardo_genes_CV_web.pdf',
       label: 'CV',
     },
   ];
