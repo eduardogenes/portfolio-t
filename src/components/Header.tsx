@@ -1,53 +1,196 @@
-import React from 'react';
-import { Github, Linkedin, Mail, FileText, Menu } from 'lucide-react';
-import ThemeToggle from './ui/ThemeToggle';
+import { useState, useEffect } from 'react'
+import { useTheme } from '../contexts/ThemeContext'
+import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useScrollNavigation } from '../hooks/useScrollNavigation'
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+  const { theme, toggleTheme } = useTheme()
+
+  useScrollNavigation()
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleActiveSection = () => {
+      const sections = ['home', 'about', 'skills', 'projects', 'contact']
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (!element) continue
+
+        const offsetTop = element.offsetTop
+        const offsetBottom = offsetTop + element.offsetHeight
+
+        if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+          setActiveSection(section)
+          break
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleActiveSection)
+    return () => window.removeEventListener('scroll', handleActiveSection)
+  }, [])
+
+  const menuItems = [
+    { label: 'Início', href: '#home' },
+    { label: 'Sobre', href: '#about' },
+    { label: 'Habilidades', href: '#skills' },
+    { label: 'Projetos', href: '#projects' },
+    { label: 'Contato', href: '#contact' }
+  ]
 
   return (
-    <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm transition-colors">
-      <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Eduardo Genes</h1>
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg dark:shadow-blue-500/5'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5" />
+      
+      <nav className="container mx-auto px-6 py-4 relative">
+        <div className="flex items-center justify-between">
+          <div className="text-2xl font-bold relative z-10">
+            <span className="logo-text">
+              Eduardo Genes
+            </span>
+          </div>
 
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2"
-              aria-label="Toggle menu"
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                className={`relative px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors rounded-lg ${
+                  activeSection === item.href.substring(1)
+                    ? 'text-blue-500 dark:text-blue-400'
+                    : ''
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10">{item.label}</span>
+                {activeSection === item.href.substring(1) && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute inset-0 bg-blue-50 dark:bg-blue-900/30 rounded-lg"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30
+                    }}
+                  />
+                )}
+              </motion.a>
+            ))}
+            
+            <motion.button
+              onClick={toggleTheme}
+              className="relative p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              animate={{
+                rotate: theme === 'dark' ? 180 : 0
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 10
+              }}
             >
-              <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-            </button>
+              {theme === 'dark' ? (
+                <FiSun className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <FiMoon className="w-5 h-5 text-gray-600" />
+              )}
+            </motion.button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center space-x-4">
+            <motion.button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {theme === 'dark' ? (
+                <FiSun className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <FiMoon className="w-5 h-5 text-gray-600" />
+              )}
+            </motion.button>
+            
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <motion.div
+                animate={isMenuOpen ? "open" : "closed"}
+                variants={{
+                  open: { rotate: 180 },
+                  closed: { rotate: 0 }
+                }}
+              >
+                {isMenuOpen ? (
+                  <FiX className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                ) : (
+                  <FiMenu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                )}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
 
-        <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block mt-4 md:mt-0`}>
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-            <a href="#sobre" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Sobre</a>
-            <a href="#habilidades" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Habilidades</a>
-            <a href="#projetos" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Projetos</a>
-            <a href="#formacao" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Formação</a>
-            <a href="#contato" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contato</a>
-            
-            <div className="flex items-center gap-4 md:ml-6">
-              <a href="https://github.com/eduardogenes" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                <Github size={20} />
-              </a>
-              <a href="https://linkedin.com/in/eduardogenes" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                <Linkedin size={20} />
-              </a>
-              <a href="mailto:eduardogenes95@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                <Mail size={20} />
-              </a>
-              <a href="/eduardo_genes_curriculo_web_junior.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                <FileText size={20} />
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="absolute top-full left-0 right-0 mt-2 p-2 bg-white dark:bg-gray-900 rounded-2xl shadow-xl dark:shadow-blue-500/5 overflow-hidden"
+            >
+              {menuItems.map((item, index) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  className={`block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${
+                    activeSection === item.href.substring(1)
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400'
+                      : ''
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ x: 10 }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </motion.header>
+  )
 }

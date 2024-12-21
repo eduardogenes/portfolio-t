@@ -1,47 +1,86 @@
-import React from 'react';
+import { motion } from 'framer-motion'
+import { FiCode, FiLayout, FiServer } from 'react-icons/fi'
 
 export default function About() {
+  const skills = [
+    {
+      icon: <FiCode className="w-8 h-8" />,
+      title: 'Front-end Development',
+      description:
+        'Desenvolvimento de interfaces modernas e responsivas com React, TypeScript e Tailwind CSS.',
+    },
+    {
+      icon: <FiServer className="w-8 h-8" />,
+      title: 'Back-end Development',
+      description:
+        'Construção de APIs robustas e escaláveis utilizando Node.js e bancos de dados modernos.',
+    },
+    {
+      icon: <FiLayout className="w-8 h-8" />,
+      title: 'UI/UX Design',
+      description:
+        'Criação de experiências de usuário intuitivas e designs modernos focados em usabilidade.',
+    },
+  ]
+
   return (
-    <section id="sobre" className="py-20 bg-white dark:bg-dark-800/50 transition-colors">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Sobre Mim</h2>
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="w-full md:w-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1517849845537-4d257902454a"
-              alt="Foto de perfil"
-              className="rounded-lg shadow-lg w-full max-w-md mx-auto dark:shadow-accent-blue/20 hover:shadow-xl dark:hover:shadow-accent-blue/30 transition-shadow duration-300"
-            />
-          </div>
-          <div className="w-full md:w-1/2">
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Olá! Sou Eduardo Genes, desenvolvedor web apaixonado por criar soluções digitais inovadoras. 
-              Com experiência em desenvolvimento front-end, utilizo tecnologias como React, Tailwind CSS e Node.js 
-              para criar interfaces responsivas e de alta performance.
-            </p>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Sou formado em Desenvolvimento Web Full-Stack e tenho conhecimento em DevOps, com foco em Kubernetes e CI/CD. 
-              Busco contribuir para projetos desafiadores que promovam inovação e excelente experiência do usuário.
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="#contato"
-                className="px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white rounded-md hover:opacity-90 transition-all duration-300 hover:scale-105"
-              >
-                Entre em Contato
-              </a>
-              <a
-                href="/eduardo_genes_curriculo_web_junior.pdf"
-                className="px-6 py-3 border border-accent-blue text-accent-blue dark:text-accent-blue rounded-md hover:bg-accent-blue/10 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download CV
-              </a>
-            </div>
-          </div>
+    <section
+      id="about"
+      className="py-20 bg-white dark:bg-gray-900"
+    >
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+              Sobre Mim
+            </span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Sou um desenvolvedor web apaixonado por criar soluções digitais
+            inovadoras. Com experiência em desenvolvimento full-stack, busco sempre
+            aprender novas tecnologias e aprimorar minhas habilidades.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl hover:shadow-lg transition-all duration-300"
+            >
+              <div className="text-blue-500 mb-4">{skill.icon}</div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+                {skill.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {skill.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <a href="#skills" className="next-section-button">
+              Veja minhas habilidades
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }
