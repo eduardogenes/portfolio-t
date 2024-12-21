@@ -1,0 +1,137 @@
+/* Reset e estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Variáveis CSS */
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #9333ea;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --transition-base: all 0.2s ease;
+}
+
+/* Dark Mode */
+.dark {
+  --primary: #60a5fa;
+  --primary-dark: #3b82f6;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+}
+
+/* Utilitários */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logo-text {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Scroll Suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Botão de navegação entre seções */
+.next-section-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.next-section-button:hover {
+  background: #f1f5f9;
+  color: #475569;
+  transform: translateY(-2px);
+}
+
+.dark .next-section-button {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark .next-section-button:hover {
+  background: #475569;
+  color: #f8fafc;
+  border-color: #64748b;
+}
