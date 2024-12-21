@@ -20,7 +20,7 @@ export default function Hero() {
     },
     {
       icon: <FiFileText className="w-6 h-6" />,
-      href: '../../../public/assets/eduardo_genes_CV_web.pdf',
+      href: 'https://drive.google.com/file/d/1YnMcP5eWRmZYuXHsh0Tfvg9vKzs-LNGr/view?usp=drive_link',
       label: 'CV',
     },
   ];
