@@ -1,25 +1,25 @@
 import { motion } from 'framer-motion'
-import { FiCode, FiLayout, FiServer } from 'react-icons/fi'
+import { FiCode, FiLayout, FiServer, FiUser } from 'react-icons/fi'
 
 export default function About() {
   const skills = [
     {
       icon: <FiCode className="w-8 h-8" />,
-      title: 'Front-end Development',
+      title: 'Front-end',
       description:
-        'Desenvolvimento de interfaces modernas e responsivas com React, TypeScript e Tailwind CSS.',
+        'Desenvolvimento de interfaces web com React e TypeScript, buscando criar experiências responsivas e acessíveis.',
     },
     {
       icon: <FiServer className="w-8 h-8" />,
-      title: 'Back-end Development',
+      title: 'Back-end',
       description:
-        'Construção de APIs robustas e escaláveis utilizando Node.js e bancos de dados modernos.',
+        'Conhecimento em Node.js e bancos de dados SQL, com foco em boas práticas de desenvolvimento.',
     },
     {
       icon: <FiLayout className="w-8 h-8" />,
-      title: 'UI/UX Design',
+      title: 'UI Design',
       description:
-        'Criação de experiências de usuário intuitivas e designs modernos focados em usabilidade.',
+        'Implementação de interfaces seguindo princípios de design e usabilidade com Tailwind CSS.',
     },
   ]
 
@@ -36,15 +36,14 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Sobre Mim
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500 flex items-center justify-center gap-3">
+            <FiUser className="w-8 h-8" />
+            Sobre Mim
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Sou um desenvolvedor web apaixonado por criar soluções digitais
-            inovadoras. Com experiência em desenvolvimento full-stack, busco sempre
-            aprender novas tecnologias e aprimorar minhas habilidades.
+            Desenvolvedor web focado em criar soluções práticas e funcionais.
+            Atualmente me dedicando ao desenvolvimento full-stack, sempre buscando
+            aprender e evoluir com cada projeto.
           </p>
         </motion.div>
 

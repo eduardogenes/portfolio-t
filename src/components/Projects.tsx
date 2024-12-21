@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
 
 const projects = [
   {
@@ -80,8 +80,9 @@ const imageVariants = {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900 transition-colors">
+    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
+        {/* Título da seção */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,17 +90,16 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Projetos
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500 flex items-center justify-center gap-3">
+            <FiFolder className="w-8 h-8" />
+            Projetos
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades
-            e experiência em diferentes tecnologias.
+            Alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência
           </p>
         </motion.div>
 
+        {/* Lista de Projetos */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
