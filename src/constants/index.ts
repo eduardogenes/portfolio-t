@@ -1,4 +1,18 @@
-// Navegação
+/**
+ * constants/index.ts
+ * Arquivo de constantes globais da aplicação.
+ * 
+ * Contém:
+ * - Configurações de navegação
+ * - Configurações de animação
+ * - Informações de contato
+ * - Links de redes sociais
+ */
+
+/**
+ * Itens do menu de navegação principal
+ * Cada item contém label para exibição e href para navegação
+ */
 export const MENU_ITEMS = [
   { label: 'Início', href: '#home' },
   { label: 'Sobre', href: '#about' },
@@ -7,22 +21,33 @@ export const MENU_ITEMS = [
   { label: 'Contato', href: '#contact' }
 ] as const
 
-// Animações
+/**
+ * Configurações globais de animação
+ * - scroll: configurações para animação de scroll suave
+ * - transition: configurações padrão para transições
+ * - stagger: configurações para animações em sequência
+ */
 export const ANIMATION_CONFIG = {
   scroll: {
-    duration: 800,
-    offset: 20
+    duration: 800, // Duração da animação de scroll em ms
+    offset: 20     // Offset para ajuste fino da posição final
   },
   transition: {
-    duration: 0.3,
-    ease: [0.4, 0, 0.2, 1]
+    duration: 0.3,                // Duração padrão de transições
+    ease: [0.4, 0, 0.2, 1]       // Curva de easing personalizada
   },
   stagger: {
-    children: 0.1
+    children: 0.1                 // Delay entre animações de elementos filhos
   }
 } as const
 
-// Contato
+/**
+ * Informações de contato
+ * Cada item contém:
+ * - type: tipo de contato
+ * - text: texto para exibição
+ * - href: link para ação
+ */
 export const CONTACT_INFO = [
   {
     type: 'email',
@@ -41,7 +66,12 @@ export const CONTACT_INFO = [
   }
 ] as const
 
-// Redes Sociais
+/**
+ * Links para redes sociais
+ * Cada item contém:
+ * - platform: nome da plataforma
+ * - url: link para o perfil
+ */
 export const SOCIAL_LINKS = [
   {
     platform: 'GitHub',
@@ -49,6 +79,6 @@ export const SOCIAL_LINKS = [
   },
   {
     platform: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/eduardo-genes'
+    url: 'https://linkedin.com/in/eduardogenes'
   }
 ] as const
