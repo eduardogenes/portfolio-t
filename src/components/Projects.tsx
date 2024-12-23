@@ -90,9 +90,9 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500 flex items-center justify-center gap-3">
-            <FiFolder className="w-8 h-8" />
-            Projetos
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+            <FiFolder className="w-8 h-8 text-blue-500" />
+            <span className="animated-gradient-text">Projetos</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência

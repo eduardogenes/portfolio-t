@@ -70,6 +70,32 @@ body {
   font-weight: bold;
 }
 
+.animated-gradient-text {
+  background: linear-gradient(300deg, 
+    #3b82f6,  /* azul mais vivo */
+    #8b5cf6,  /* roxo mais intenso */
+    #06b6d4,  /* ciano */
+    #3b82f6   /* volta para azul */
+  );
+  background-size: 300% 300%;
+  animation: gradient 4s ease alternate infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Animações */
 @keyframes fadeIn {
   from {

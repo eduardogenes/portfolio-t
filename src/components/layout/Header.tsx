@@ -18,8 +18,8 @@ export default function Header() {
   const socialLinks = [
     { href: "https://github.com", icon: Github, label: "GitHub" },
     { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-    { href: "mailto:seu@email.com", icon: Mail, label: "Email" },
-    { href: "/cv.pdf", icon: FileText, label: "CV" }
+    { href: "mailto:eduardogenes95@gmail.com", icon: Mail, label: "Email" },
+    { href: "C:\XboxGames\workspace\portfolio-t\src\components\layout\Header.tsx", icon: FileText, label: "CV" }
   ];
 
   return (
