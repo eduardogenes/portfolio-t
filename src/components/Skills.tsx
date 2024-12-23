@@ -1,14 +1,8 @@
-import { useEffect } from 'react';
-import { motion, useAnimation, animate } from 'framer-motion';
-import { FaReact, FaNodeJs, FaHtml5, FaGitAlt, FaDatabase, FaUsers, FaGraduationCap, FaLanguage, FaBrain } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiVite, SiTailwindcss, SiDocker, SiKubernetes, SiAmazonaws } from 'react-icons/si';
-import { BsLightbulb, BsBook } from 'react-icons/bs';
-import { MdOutlineEngineering } from 'react-icons/md';
-import { IoMdAnalytics, IoMdSchool } from 'react-icons/io';
+import { motion } from 'framer-motion';
+import { FaReact, FaNodeJs, FaHtml5, FaGitAlt, FaDatabase, FaUsers, FaLanguage, FaBrain } from 'react-icons/fa';
+import { SiTypescript, SiJavascript, SiDocker, SiAmazonaws } from 'react-icons/si';
 
 export default function Skills() {
-  const controls = useAnimation();
-
   const skills = [
     { name: 'JavaScript', level: 80, icon: SiJavascript },
     { name: 'TypeScript', level: 60, icon: SiTypescript },
@@ -23,34 +17,10 @@ export default function Skills() {
 
   const competencies = [
     {
-      icon: <MdOutlineEngineering className="w-6 h-6" />,
-      title: "Resolução de Problemas",
-      subtitle: "Pensamento Lógico",
-      description: "Capacidade analítica para encontrar soluções eficientes e criativas"
-    },
-    {
       icon: <FaUsers className="w-6 h-6" />,
       title: "Trabalho em Equipe",
       subtitle: "Comunicação Clara",
       description: "Experiência com metodologias ágeis e ferramentas colaborativas"
-    },
-    {
-      icon: <BsLightbulb className="w-6 h-6" />,
-      title: "Aprendizado e Dedicação",
-      subtitle: "Foco em Evolução",
-      description: "Facilidade em aprender novas tecnologias e adaptar-se a mudanças"
-    },
-    {
-      icon: <IoMdAnalytics className="w-6 h-6" />,
-      title: "Organização",
-      subtitle: "Gestão de Tempo",
-      description: "Habilidade em gerenciar tarefas e priorizar demandas"
-    },
-    {
-      icon: <IoMdSchool className="w-6 h-6" />,
-      title: "Formação Acadêmica",
-      subtitle: "Em formação",
-      description: "Análise e Desenvolvimento de Sistemas - UNESA"
     },
     {
       icon: <FaLanguage className="w-6 h-6" />,
@@ -163,7 +133,7 @@ export default function Skills() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-500 flex items-center justify-center gap-3">
-            <MdOutlineEngineering className="w-8 h-8" />
+            <FaUsers className="w-8 h-8" />
             Competências
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
@@ -225,7 +195,7 @@ export default function Skills() {
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.3 }}
             >
-              <BsBook className="w-8 h-8" />
+              <FaUsers className="w-8 h-8" />
             </motion.div>
             <h2 className="text-2xl font-bold text-blue-500 mb-4 inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
               Certificações
@@ -276,21 +246,14 @@ export default function Skills() {
         >
           <a
             href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
+            onClick={() => {
               const element = document.getElementById('projects');
+              const headerOffset = 100;
               if (element) {
-                const header = document.querySelector('header');
-                const headerOffset = header ? header.offsetHeight : 0;
                 const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                animate(window.scrollY, offsetPosition, {
-                  duration: 0.8,
-                  ease: [0.32, 0.72, 0, 1],
-                  onUpdate: (value) => {
-                    window.scrollTo(0, value);
-                  }
+                window.scrollTo({
+                  top: elementPosition + window.pageYOffset - headerOffset,
+                  behavior: 'smooth'
                 });
               }
             }}
