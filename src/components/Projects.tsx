@@ -3,36 +3,44 @@ import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
 
 const projects = [
   {
-    title: 'E-commerce Platform',
-    description: 'Plataforma de e-commerce completa com carrinho de compras, pagamentos e painel administrativo.',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com',
-    live: 'https://projeto1.com'
+    title: 'InfiniFlix',
+    description: 'Plataforma de streaming com catálogo de filmes e séries.',
+    image: '/images/infiniflix.png',
+    tech: ['React', 'Next.js', 'Tailwind'],
+    github: 'https://github.com/eduardogenes/infiniflix',
+    live: 'https://infiniflix.vercel.app'
   },
   {
-    title: 'Task Manager',
-    description: 'Aplicativo de gerenciamento de tarefas com recursos de colaboração em tempo real.',
-    image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91',
-    tech: ['React', 'Firebase', 'Tailwind'],
-    github: 'https://github.com',
-    live: 'https://projeto2.com'
+    title: 'Dr. Care',
+    description: 'Site institucional para clínica médica com agendamento de consultas.',
+    image: '/images/dr-care.png',
+    tech: ['React', 'Next.js', 'Styled Components'],
+    github: 'https://github.com/eduardogenes/drCARE',
+    live: 'https://dr-care-swart.vercel.app'
   },
   {
-    title: 'Weather App',
-    description: 'Aplicativo de previsão do tempo com dados em tempo real e visualizações interativas.',
-    image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b',
-    tech: ['React', 'OpenWeather API', 'Chart.js'],
-    github: 'https://github.com',
-    live: 'https://projeto3.com'
+    title: 'Orçamento Nano',
+    description: 'Aplicativo para gerenciamento de orçamento pessoal e controle financeiro.',
+    image: '/images/orcamento.png',
+    tech: ['React', 'TypeScript', 'Node.js'],
+    github: 'https://github.com/eduardogenes/orcamento-nano',
+    live: 'https://orcamento-nano.vercel.app'
   },
   {
-    title: 'Calculadora de Tarifas Interna',
-    description: 'Ferramenta desenvolvida para automatizar cálculos de tarifas e orçamentos, otimizando processos internos.',
-    image: 'https://via.placeholder.com/400x300',
+    title: 'Calculadora',
+    description: 'Calculadora web com interface moderna e funcionalidades avançadas.',
+    image: '/images/calculadora.png',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/eduardogenes/calculadora-tarifas',
-    live: null
+    github: 'https://github.com/eduardogenes/calculadora',
+    live: 'https://calculadora-ochre-ten.vercel.app'
+  },
+  {
+    title: 'Interactive Rating',
+    description: 'Componente interativo de avaliação com animações e feedback visual.',
+    image: '/images/rating.png',
+    tech: ['React', 'CSS', 'JavaScript'],
+    github: 'https://github.com/eduardogenes/interactive-rating-component',
+    live: 'https://interactive-rating-component-ten-sigma.vercel.app'
   }
 ]
 
