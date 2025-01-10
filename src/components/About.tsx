@@ -1,10 +1,15 @@
-import { motion } from 'framer-motion'
+// Importação dos ícones para as diferentes seções
 import { FiCode, FiLayout, FiServer, FiUser } from 'react-icons/fi'
+import { motion } from 'framer-motion'
+// Importação do hook de idiomas
 import { useLanguage } from '../contexts/LanguageContext'
 
+// Componente About - Seção "Sobre Mim"
 export default function About() {
+  // Hook para traduções
   const { t } = useLanguage();
   
+  // Array com informações das habilidades principais
   const skills = [
     {
       icon: <FiCode className="w-8 h-8" />,
@@ -24,11 +29,13 @@ export default function About() {
   ]
 
   return (
+    // Seção principal com fundo e espaçamento
     <section
       id="about"
       className="py-20 bg-white dark:bg-gray-900"
     >
       <div className="container mx-auto px-6">
+        {/* Título da seção com animação */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,8 +52,10 @@ export default function About() {
           </p>
         </motion.div>
 
+        {/* Grid de habilidades */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((skill, index) => (
+            // Card de habilidade com animação
             <motion.div
               key={skill.title}
               initial={{ opacity: 0, y: 20 }}
@@ -66,6 +75,7 @@ export default function About() {
           ))}
         </div>
 
+        {/* Botão "Ver Habilidades" com animação */}
         <div className="flex justify-center mt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

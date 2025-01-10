@@ -78,12 +78,9 @@ export default function Header() {
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      motion.animate(window.scrollY, offsetPosition, {
-        duration: 0.8,
-        ease: [0.32, 0.72, 0, 1],
-        onUpdate: (value) => {
-          window.scrollTo(0, value)
-        }
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       })
       
       setIsMenuOpen(false)

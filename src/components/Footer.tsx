@@ -1,3 +1,14 @@
+/**
+ * Footer.tsx
+ * Componente de rodapé com informações de copyright e créditos.
+ * 
+ * Funcionalidades:
+ * - Exibição de informações de copyright
+ * - Ícone de coração animado
+ * - Suporte a temas claro/escuro
+ * - Internacionalização com i18n
+ */
+
 import { FiGithub, FiLinkedin, FiMail, FiHeart } from 'react-icons/fi';
 import { useLanguage } from '../contexts/LanguageContext';
 

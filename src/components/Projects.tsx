@@ -1,116 +1,130 @@
-import { motion } from 'framer-motion';
+// Importação dos ícones e componentes necessários
 import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const projects = [
-  {
-    title: 'projects.projects.infiniflix.title',
-    description: 'projects.projects.infiniflix.description',
-    images: {
-      default: '/images/infiniflix-logo.png',
-      hover: '/images/infiniflix-thumb.png'
-    },
-    tech: ['React', 'Next.js', 'Tailwind'],
-    github: 'https://github.com/eduardogenes/infiniflix',
-    live: 'https://infiniflix.vercel.app'
-  },
-  {
-    title: 'projects.projects.drCare.title',
-    description: 'projects.projects.drCare.description',
-    images: {
-      default: '/images/drcare-logo.png',
-      hover: '/images/drcare-thumb.png'
-    },
-    tech: ['React', 'Next.js', 'Styled Components'],
-    github: 'https://github.com/eduardogenes/drCARE',
-    live: 'https://dr-care-swart.vercel.app'
-  },
-  {
-    title: 'projects.projects.orcamentoNano.title',
-    description: 'projects.projects.orcamentoNano.description',
-    images: {
-      default: '/images/orcamento-thumb.png',
-      hover: '/images/orcamento-thumb.png'
-    },
-    tech: ['React', 'TypeScript', 'Node.js'],
-    github: 'https://github.com/eduardogenes/orcamento-nano',
-    live: 'https://orcamento-nano.vercel.app'
-  },
-  {
-    title: 'projects.projects.calculadora.title',
-    description: 'projects.projects.calculadora.description',
-    images: {
-      default: '/images/calculadora-thumb.png',
-      hover: '/images/calculadora-thumb.png'
-    },
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/eduardogenes/calculadora',
-    live: 'https://calculadora-ochre-ten.vercel.app'
-  },
-  {
-    title: 'projects.projects.interactiveRating.title',
-    description: 'projects.projects.interactiveRating.description',
-    images: {
-      default: '/images/rating-thumb.png',
-      hover: '/images/rating-thumb.png'
-    },
-    tech: ['React', 'CSS', 'JavaScript'],
-    github: 'https://github.com/eduardogenes/interactive-rating-component',
-    live: 'https://interactive-rating-component-ten-sigma.vercel.app'
-  }
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { y: 50, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      damping: 15,
-      stiffness: 100
-    }
-  }
-};
-
+// Componente Projects - Seção de Projetos
 export default function Projects() {
-  const [hoveredProjects, setHoveredProjects] = useState<{ [key: string]: boolean }>({});
+  // Hook para traduções
   const { t } = useLanguage();
 
-  const handleMouseEnter = (projectTitle: string) => {
-    setHoveredProjects(prev => ({
-      ...prev,
-      [projectTitle]: true
-    }));
+  // Array com informações dos projetos
+  const projects = [
+    {
+      title: 'projects.projects.infiniflix.title',
+      description: 'projects.projects.infiniflix.description',
+      images: {
+        default: '/images/infiniflix-logo.png',
+        hover: '/images/infiniflix-thumb.png'
+      },
+      tech: ['React', 'Next.js', 'Tailwind'],
+      github: 'https://github.com/eduardogenes/infiniflix',
+      live: 'https://infiniflix.vercel.app'
+    },
+    {
+      title: 'projects.projects.drCare.title',
+      description: 'projects.projects.drCare.description',
+      images: {
+        default: '/images/drcare-logo.png',
+        hover: '/images/drcare-thumb.png'
+      },
+      tech: ['React', 'Next.js', 'Styled Components'],
+      github: 'https://github.com/eduardogenes/drCARE',
+      live: 'https://dr-care-swart.vercel.app'
+    },
+    {
+      title: 'projects.projects.orcamentoNano.title',
+      description: 'projects.projects.orcamentoNano.description',
+      images: {
+        default: '/images/orcamento-thumb.png',
+        hover: '/images/orcamento-thumb.png'
+      },
+      tech: ['React', 'TypeScript', 'Node.js'],
+      github: 'https://github.com/eduardogenes/orcamento-nano',
+      live: 'https://orcamento-nano.vercel.app'
+    },
+    {
+      title: 'projects.projects.calculadora.title',
+      description: 'projects.projects.calculadora.description',
+      images: {
+        default: '/images/calculadora-thumb.png',
+        hover: '/images/calculadora-thumb.png'
+      },
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/eduardogenes/calculadora',
+      live: 'https://calculadora-ochre-ten.vercel.app'
+    },
+    {
+      title: 'projects.projects.interactiveRating.title',
+      description: 'projects.projects.interactiveRating.description',
+      images: {
+        default: '/images/rating-thumb.png',
+        hover: '/images/rating-thumb.png'
+      },
+      tech: ['React', 'CSS', 'JavaScript'],
+      github: 'https://github.com/eduardogenes/interactive-rating-component',
+      live: 'https://interactive-rating-component-ten-sigma.vercel.app'
+    }
+  ];
+
+  // Estado para controlar qual projeto está com hover
+  const [hoveredProjects, setHoveredProjects] = useState<{ [key: string]: boolean }>({});
+
+  // Variantes de animação para as imagens
+  const imageVariants = {
+    enter: { opacity: 1 },
+    center: { 
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+    exit: {
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn"
+      }
+    }
   };
 
-  const handleMouseLeave = (projectTitle: string) => {
-    setHoveredProjects(prev => ({
-      ...prev,
-      [projectTitle]: false
-    }));
+  // Variantes de animação para o container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  // Variantes de animação para o card
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        damping: 15,
+        stiffness: 100
+      }
+    }
   };
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
+    // Seção principal com fundo e espaçamento
+    <section id="projects" className="py-20 bg-white dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-6">
-        {/* Título da seção */}
+        {/* Título da seção com animação */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
@@ -122,7 +136,7 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Lista de Projetos */}
+        {/* Grid de projetos */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -131,29 +145,54 @@ export default function Projects() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project) => (
+            // Card de projeto com animação
             <motion.div
               key={project.title}
               variants={cardVariants}
               whileHover={{ y: -5 }}
               className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
+              {/* Container da imagem com efeito de hover */}
               <div 
                 className="relative h-48 overflow-hidden"
-                onMouseEnter={() => handleMouseEnter(project.title)}
-                onMouseLeave={() => handleMouseLeave(project.title)}
+                onMouseEnter={() => setHoveredProjects(prev => ({ ...prev, [project.title]: true }))}
+                onMouseLeave={() => setHoveredProjects(prev => ({ ...prev, [project.title]: false }))}
               >
+                {/* Imagem de fundo (hover) */}
                 <img
-                  src={hoveredProjects[project.title] ? project.images.hover : project.images.default}
+                  src={project.images.hover}
                   alt={t(project.title)}
-                  className={`w-full h-full transition-all duration-700 ease-in-out ${
-                    project.images.default.includes('logo') && !hoveredProjects[project.title]
-                      ? 'object-cover bg-[#1B1F27] dark:bg-[#1B1F27]'
-                      : 'object-cover'
-                  }`}
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700" />
+                
+                {/* Logo sobreposta */}
+                <AnimatePresence mode="wait">
+                  {!hoveredProjects[project.title] && (
+                    <motion.div
+                      key="logo"
+                      variants={imageVariants}
+                      initial="enter"
+                      animate="enter"
+                      exit="center"
+                      className={`absolute inset-0 w-full h-full ${
+                        project.images.default.includes('logo')
+                          ? 'bg-[#1B1F27] dark:bg-[#1B1F27]'
+                          : ''
+                      }`}
+                    >
+                      <img
+                        src={project.images.default}
+                        alt={t(project.title)}
+                        className="w-full h-full object-cover"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
               </div>
 
+              {/* Informações do projeto */}
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
                   {t(project.title)}
@@ -162,6 +201,7 @@ export default function Projects() {
                   {t(project.description)}
                 </p>
                 
+                {/* Lista de tecnologias usadas */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -178,6 +218,7 @@ export default function Projects() {
                   ))}
                 </motion.div>
 
+                {/* Links do projeto */}
                 <div className="flex gap-4">
                   <motion.a
                     href={project.github}
@@ -209,6 +250,7 @@ export default function Projects() {
           ))}
         </motion.div>
         
+        {/* Botão "Vamos conversar" com animação */}
         <div className="flex justify-center mt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

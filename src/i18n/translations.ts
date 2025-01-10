@@ -183,7 +183,7 @@ export const translations = {
     hero: {
       title: "Desenvolvedor Web Full Stack",
       subtitle: "Transformando ideias em soluções elegantes e funcionais",
-      callToAction: "Sobre"
+      callToAction: "Conheça meu trabalho"
     },
     
     // About - Seção sobre mim
@@ -204,7 +204,7 @@ export const translations = {
           title: "UI Design",
           description: "Implementação de interfaces seguindo princípios de design e usabilidade com Tailwind CSS."
         },
-        cta: "Habilidades"
+        cta: "minhas habilidades"
       }
     },
 
@@ -212,7 +212,7 @@ export const translations = {
     skills: {
       title: "Habilidades",
       subtitle: "O conhecimento é uma jornada sem fim",
-      cta: "Projetos",
+      cta: "meus projetos",
       // Subseção de competências
       competencies: {
         title: "Competências",
@@ -291,7 +291,7 @@ export const translations = {
           description: "Componente interativo de avaliação com animações e feedback visual."
         }
       },
-      cta: "Vamos conversar",
+      cta: "vamos conversar",
       code: "Código",
       demo: "Demo"
     },

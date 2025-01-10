@@ -1,3 +1,14 @@
+/**
+ * LanguageSwitch.tsx
+ * Componente de alternância entre idiomas (PT/EN).
+ * 
+ * Funcionalidades:
+ * - Botão para alternar entre português e inglês
+ * - Animação suave na transição
+ * - Indicador visual do idioma atual
+ * - Integração com o contexto de idiomas
+ */
+
 import { useLanguage } from '../../contexts/LanguageContext';
 import { FiGlobe } from 'react-icons/fi';
 

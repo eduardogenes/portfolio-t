@@ -1,3 +1,16 @@
+/**
+ * Skills.tsx
+ * Componente que exibe as habilidades técnicas, competências e certificações.
+ * 
+ * Funcionalidades:
+ * - Exibição de habilidades técnicas com barras de progresso
+ * - Lista de competências com ícones e descrições
+ * - Lista de certificações com status
+ * - Animações de entrada usando Framer Motion
+ * - Suporte a temas claro/escuro
+ * - Internacionalização com i18n
+ */
+
 // Importações necessárias
 import { FaReact, FaNodeJs, FaHtml5, FaGitAlt, FaDatabase, FaUsers, FaLanguage, FaBrain } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiDocker, SiAmazonaws } from 'react-icons/si';
@@ -113,7 +126,9 @@ export default function Skills() {
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-300">{skill.level}%</span>
               </div>
-              <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5">
+              <div 
+                className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5"
+              >
                 <div
                   className="bg-blue-500 h-1.5 rounded-full"
                   style={{ width: `${skill.level}%` }}
@@ -124,7 +139,9 @@ export default function Skills() {
         </div>
 
         {/* Competências */}
-        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 mb-12">
+        <div
+          className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 mb-12"
+        >
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <MdOutlineEngineering className="w-8 h-8 text-blue-500" />
@@ -147,7 +164,9 @@ export default function Skills() {
         </div>
 
         {/* Certificações */}
-        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8">
+        <div
+          className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8"
+        >
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <FaUsers className="w-8 h-8 text-blue-500" />
@@ -163,7 +182,9 @@ export default function Skills() {
                 <h4 className="font-medium text-gray-800 dark:text-white flex items-center gap-2">
                   {cert.name}
                   {cert.status === 'current' && (
-                    <span className="text-xs bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full">
+                    <span
+                      className="text-xs bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full"
+                    >
                       {t('skills.certifications.inProgress')}
                     </span>
                   )}
@@ -177,8 +198,24 @@ export default function Skills() {
         </div>
 
         {/* Botão de navegação */}
-        <div className="flex justify-center mt-16">
-          <a href="#projects" className="next-section-button">
+        <div
+          className="flex justify-center mt-16"
+        >
+          <a
+            href="#projects"
+            onClick={() => {
+              const element = document.getElementById('projects');
+              const headerOffset = 100;
+              if (element) {
+                const elementPosition = element.getBoundingClientRect().top;
+                window.scrollTo({
+                  top: elementPosition + window.pageYOffset - headerOffset,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+            className="flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors duration-300"
+          >
             {t('skills.cta')}
           </a>
         </div>

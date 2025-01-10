@@ -1,13 +1,14 @@
 /**
  * Contact.tsx
- * Componente de formulário de contato com integração EmailJS e animações.
+ * Componente de formulário de contato com validação e feedback visual.
  * 
  * Funcionalidades:
- * - Formulário de contato interativo
- * - Integração com EmailJS para envio de emails
- * - Animações usando Framer Motion
- * - Feedback visual de sucesso/erro
- * - Informações de contato com ícones
+ * - Formulário de contato com validação
+ * - Feedback visual de erros e sucesso
+ * - Animações de transição
+ * - Integração com serviço de email
+ * - Suporte a temas claro/escuro
+ * - Internacionalização com i18n
  */
 
 import { useState, useRef, useEffect } from 'react';
