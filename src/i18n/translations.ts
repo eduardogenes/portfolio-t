@@ -1,12 +1,38 @@
+/**
+ * translations.ts
+ * Arquivo central de traduções do portfólio.
+ * 
+ * Estrutura:
+ * - Organizado por idiomas (en, pt)
+ * - Cada idioma contém seções correspondentes aos componentes
+ * - Chaves aninhadas para melhor organização
+ * - Mantém consistência entre as traduções
+ * 
+ * Seções principais:
+ * - hero: Seção inicial com apresentação
+ * - about: Informações sobre mim
+ * - skills: Habilidades técnicas e competências
+ * - projects: Portfólio de projetos
+ * - contact: Formulário de contato
+ * - nav: Menu de navegação
+ * - footer: Rodapé
+ */
+
 export const translations = {
+  // Traduções em inglês
   en: {
+    // Hero - Seção inicial
     hero: {
       title: "Full Stack Web Developer",
+      subtitle: "Transforming ideas into elegant and functional solutions",
       callToAction: "About"
     },
+    
+    // About - Seção sobre mim
     about: {
       title: "About Me",
       description: "Web developer focused on creating practical and functional solutions. Currently dedicated to full-stack development, always seeking to learn and evolve with each project.",
+      // Subseção de habilidades no About
       skills: {
         frontend: {
           title: "Front-end",
@@ -23,10 +49,13 @@ export const translations = {
         cta: "Skills"
       }
     },
+
+    // Skills - Seção de habilidades
     skills: {
       title: "Skills",
       subtitle: "Knowledge is an endless journey",
       cta: "Projects",
+      // Subseção de competências
       competencies: {
         title: "Competencies",
         teamwork: {
@@ -50,6 +79,7 @@ export const translations = {
           description: "Always seeking to learn new technologies and methodologies"
         }
       },
+      // Subseção de certificações
       certifications: {
         title: "Certifications",
         inProgress: "In Progress",
@@ -75,10 +105,13 @@ export const translations = {
         }
       }
     },
+
+    // Projects - Seção de projetos
     projects: {
       title: "Projects",
       subtitle: "Some of the projects I've developed, demonstrating my skills and experience",
       projects: {
+        // Detalhes de cada projeto
         infiniflix: {
           title: "InfiniFlix",
           description: "Streaming platform with movies and series catalog."
@@ -104,9 +137,12 @@ export const translations = {
       code: "Code",
       demo: "Demo"
     },
+
+    // Contact - Seção de contato
     contact: {
       title: "Contact",
       subtitle: "Let's work together?",
+      // Subseção do formulário
       form: {
         name: "Name",
         email: "Email",
@@ -116,12 +152,15 @@ export const translations = {
         success: "Message sent successfully!",
         error: "An error occurred. Please try again."
       },
+      // Subseção de horário de trabalho
       workingHours: {
         title: "Working Hours",
         days: "Monday - Friday",
         hours: "8:00 AM - 6:00 PM"
       }
     },
+
+    // Nav - Menu de navegação
     nav: {
       home: "Home",
       about: "About",
@@ -129,20 +168,29 @@ export const translations = {
       projects: "Projects",
       contact: "Contact"
     },
+
+    // Footer - Rodapé
     footer: {
       madeWith: "Made with",
       by: "by Eduardo Genes",
       copyright: "All rights reserved"
     }
   },
+
+  // Traduções em português
   pt: {
+    // Hero - Seção inicial
     hero: {
       title: "Desenvolvedor Web Full Stack",
+      subtitle: "Transformando ideias em soluções elegantes e funcionais",
       callToAction: "Sobre"
     },
+    
+    // About - Seção sobre mim
     about: {
       title: "Sobre Mim",
       description: "Desenvolvedor web focado em criar soluções práticas e funcionais. Atualmente me dedicando ao desenvolvimento full-stack, sempre buscando aprender e evoluir com cada projeto.",
+      // Subseção de habilidades no About
       skills: {
         frontend: {
           title: "Front-end",
@@ -159,10 +207,13 @@ export const translations = {
         cta: "Habilidades"
       }
     },
+
+    // Skills - Seção de habilidades
     skills: {
       title: "Habilidades",
       subtitle: "O conhecimento é uma jornada sem fim",
       cta: "Projetos",
+      // Subseção de competências
       competencies: {
         title: "Competências",
         teamwork: {
@@ -186,6 +237,7 @@ export const translations = {
           description: "Sempre buscando aprender novas tecnologias e metodologias"
         }
       },
+      // Subseção de certificações
       certifications: {
         title: "Certificações",
         inProgress: "Em andamento",
@@ -211,10 +263,13 @@ export const translations = {
         }
       }
     },
+
+    // Projects - Seção de projetos
     projects: {
       title: "Projetos",
       subtitle: "Alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência",
       projects: {
+        // Detalhes de cada projeto
         infiniflix: {
           title: "InfiniFlix",
           description: "Plataforma de streaming com catálogo de filmes e séries."
@@ -240,9 +295,12 @@ export const translations = {
       code: "Código",
       demo: "Demo"
     },
+
+    // Contact - Seção de contato
     contact: {
       title: "Contato",
       subtitle: "Vamos trabalhar juntos?",
+      // Subseção do formulário
       form: {
         name: "Nome",
         email: "Email",
@@ -252,12 +310,15 @@ export const translations = {
         success: "Mensagem enviada com sucesso!",
         error: "Ocorreu um erro. Tente novamente."
       },
+      // Subseção de horário de trabalho
       workingHours: {
         title: "Horário de Trabalho",
         days: "Segunda - Sexta",
         hours: "8:00 - 18:00"
       }
     },
+
+    // Nav - Menu de navegação
     nav: {
       home: "Início",
       about: "Sobre",
@@ -265,6 +326,8 @@ export const translations = {
       projects: "Projetos",
       contact: "Contato"
     },
+
+    // Footer - Rodapé
     footer: {
       madeWith: "Feito com",
       by: "por Eduardo Genes",

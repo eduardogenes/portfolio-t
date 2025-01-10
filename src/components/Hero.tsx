@@ -1,9 +1,15 @@
+// Importação dos ícones das redes sociais e ferramentas
 import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
+// Importação do Framer Motion para animações
 import { motion } from 'framer-motion';
+// Importação do hook de idiomas para internacionalização
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Hero() {
+  // Hook para traduções
   const { t } = useLanguage();
+
+  // Array com links das redes sociais e CV
   const socialLinks = [
     {
       icon: <FiGithub className="w-6 h-6" />,
@@ -28,13 +34,15 @@ export default function Hero() {
   ];
 
   return (
+    // Seção principal com altura mínima da tela e fundo gradiente
     <section
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-20"
     >
-      {/* Animated background elements */}
+      {/* Elementos de fundo animados */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -inset-[10px] opacity-50">
+          {/* Criação de 20 pontos animados no fundo */}
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
@@ -61,29 +69,30 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Container principal com conteúdo */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                <b>Eduardo Genes</b>
-              </span>
-            </h1>
-          </motion.div>
-
+          {/* Título profissional com animação */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
+            className="text-2xl md:text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4"
           >
             {t('hero.title')}
           </motion.p>
 
+          {/* Subtítulo com animação e estilo delicado */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-base md:text-lg text-gray-500 dark:text-gray-400 mb-8 font-light tracking-wide"
+          >
+            {t('hero.subtitle')}
+          </motion.p>
+
+          {/* Links de redes sociais com animação */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,6 +113,7 @@ export default function Hero() {
             ))}
           </motion.div>
 
+          {/* Botão "Sobre" com animação */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
