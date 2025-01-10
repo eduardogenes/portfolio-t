@@ -13,8 +13,10 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
-import { motion, AnimatePresence, animate } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollNavigation } from '../hooks/useScrollNavigation'
+import { useLanguage } from '../contexts/LanguageContext'
+import LanguageSwitch from './ui/LanguageSwitch'
 
 export default function Header() {
   // Estados para controle da UI
@@ -22,6 +24,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const { theme, toggleTheme } = useTheme()
+  const { t } = useLanguage()
 
   // Hook personalizado para navegação por scroll
   useScrollNavigation()
@@ -75,7 +78,7 @@ export default function Header() {
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      animate(window.scrollY, offsetPosition, {
+      motion.animate(window.scrollY, offsetPosition, {
         duration: 0.8,
         ease: [0.32, 0.72, 0, 1],
         onUpdate: (value) => {
@@ -90,11 +93,11 @@ export default function Header() {
 
   // Array com itens do menu de navegação
   const menuItems = [
-    { label: 'Início', href: '#home' },
-    { label: 'Sobre', href: '#about' },
-    { label: 'Habilidades', href: '#skills' },
-    { label: 'Projetos', href: '#projects' },
-    { label: 'Contato', href: '#contact' }
+    { label: t('nav.home'), href: '#home' },
+    { label: t('nav.about'), href: '#about' },
+    { label: t('nav.skills'), href: '#skills' },
+    { label: t('nav.projects'), href: '#projects' },
+    { label: t('nav.contact'), href: '#contact' }
   ]
 
   return (
@@ -118,56 +121,49 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {menuItems.map((item) => (
-              <motion.a
+              <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.href)}
-                className={`relative px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors rounded-lg ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-blue-500 dark:text-blue-400'
-                    : ''
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className={`
+                  relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg no-underline
+                  transition-all duration-200 ease-in-out
+                  ${activeSection === item.href.substring(1)
+                    ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
+                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }
+                `}
               >
-                <span className="relative z-10">{item.label}</span>
-                {activeSection === item.href.substring(1) && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute inset-0 bg-blue-50 dark:bg-blue-900/30 rounded-lg"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30
-                    }}
-                  />
-                )}
-              </motion.a>
+                {item.label}
+              </a>
             ))}
             
-            <motion.button
-              onClick={toggleTheme}
-              className="relative p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              animate={{
-                rotate: theme === 'dark' ? 180 : 0
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 10
-              }}
-            >
-              {theme === 'dark' ? (
-                <FiSun className="w-5 h-5 text-yellow-400" />
-              ) : (
-                <FiMoon className="w-5 h-5 text-gray-600" />
-              )}
-            </motion.button>
+            {/* Theme and Language Switches */}
+            <div className="flex items-center gap-2">
+              <motion.button
+                onClick={toggleTheme}
+                className="relative p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                animate={{
+                  rotate: theme === 'dark' ? 180 : 0
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 10
+                }}
+              >
+                {theme === 'dark' ? (
+                  <FiSun className="w-5 h-5 text-yellow-400" />
+                ) : (
+                  <FiMoon className="w-5 h-5 text-gray-600" />
+                )}
+              </motion.button>
+              <LanguageSwitch />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

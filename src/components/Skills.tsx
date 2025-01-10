@@ -3,8 +3,11 @@ import { FaReact, FaNodeJs, FaHtml5, FaGitAlt, FaDatabase, FaUsers, FaLanguage, 
 import { SiTypescript, SiJavascript, SiDocker, SiAmazonaws } from 'react-icons/si';
 import { BsLightbulb, BsBook } from 'react-icons/bs';
 import { MdOutlineEngineering } from 'react-icons/md';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   const skills = [
     { name: 'JavaScript', level: 80, icon: SiJavascript },
     { name: 'TypeScript', level: 60, icon: SiTypescript },
@@ -20,57 +23,57 @@ export default function Skills() {
   const competencies = [
     {
       icon: <FaUsers className="w-6 h-6" />,
-      title: "Trabalho em Equipe",
-      subtitle: "Comunicação Clara",
-      description: "Experiência com metodologias ágeis e ferramentas colaborativas"
+      title: t('skills.competencies.teamwork.title'),
+      subtitle: t('skills.competencies.teamwork.subtitle'),
+      description: t('skills.competencies.teamwork.description')
     },
     {
       icon: <FaLanguage className="w-6 h-6" />,
-      title: "Inglês C1",
-      subtitle: "Avançado",
-      description: "Proficiência para comunicação e documentação técnica"
+      title: t('skills.competencies.english.title'),
+      subtitle: t('skills.competencies.english.subtitle'),
+      description: t('skills.competencies.english.description')
     },
     {
       icon: <BsLightbulb className="w-6 h-6" />,
-      title: "Resolução de Problemas",
-      subtitle: "Pensamento Analítico",
-      description: "Capacidade de analisar e resolver problemas complexos"
+      title: t('skills.competencies.problemSolving.title'),
+      subtitle: t('skills.competencies.problemSolving.subtitle'),
+      description: t('skills.competencies.problemSolving.description')
     },
     {
       icon: <BsBook className="w-6 h-6" />,
-      title: "Aprendizado Contínuo",
-      subtitle: "Autodidata",
-      description: "Sempre buscando aprender novas tecnologias e metodologias"
+      title: t('skills.competencies.learning.title'),
+      subtitle: t('skills.competencies.learning.subtitle'),
+      description: t('skills.competencies.learning.description')
     }
   ];
 
   const certifications = [
     {
-      name: "Análise e Desenvolvimento de Sistemas",
-      institution: "UNESA",
+      name: t('skills.certifications.systemsAnalysis.name'),
+      institution: t('skills.certifications.systemsAnalysis.institution'),
       year: "2025",
       status: "current"
     },
     { 
-      name: "Desenvolvimento Web Full-Stack",
-      institution: "Infinity School",
+      name: t('skills.certifications.webDevelopment.name'),
+      institution: t('skills.certifications.webDevelopment.institution'),
       year: "2022"
     },
     {
-      name: "DevOps",
-      institution: "Atlantico Avanti",
+      name: t('skills.certifications.devOps.name'),
+      institution: t('skills.certifications.devOps.institution'),
       year: "2023"
     },
     {
-      name: "Curso.dev",
-      institution: "Curso.dev",
-      year: "Em andamento",
+      name: t('skills.certifications.cursoDev.name'),
+      institution: t('skills.certifications.cursoDev.institution'),
+      year: t('skills.certifications.inProgress'),
       status: "current"
     },
     {
-      name: "AWS Cloud Practitioner",
-      institution: "Escola da Nuvem",
-      year: "Em andamento",
+      name: t('skills.certifications.aws.name'),
+      institution: t('skills.certifications.aws.institution'),
+      year: t('skills.certifications.inProgress'),
       status: "current"
     }
   ];
@@ -79,16 +82,14 @@ export default function Skills() {
     <section id="skills" className="relative py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
       <div className="max-w-6xl mx-auto px-4">
         {/* Título da seção */}
-        <div
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <FaBrain className="w-8 h-8 text-blue-500" />
-            <span className="animated-gradient-text">Habilidades</span>
+            <span className="animated-gradient-text">{t('skills.title')}</span>
           </h2>
           <div className="flex flex-col items-center justify-center gap-2">
             <p className="text-gray-600 dark:text-gray-300 font-medium">
-              O conhecimento é uma jornada sem fim
+              {t('skills.subtitle')}
             </p>
             <div className="flex items-center gap-3 text-blue-500 text-sm">
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
@@ -112,9 +113,7 @@ export default function Skills() {
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-300">{skill.level}%</span>
               </div>
-              <div 
-                className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5"
-              >
+              <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5">
                 <div
                   className="bg-blue-500 h-1.5 rounded-full"
                   style={{ width: `${skill.level}%` }}
@@ -125,13 +124,11 @@ export default function Skills() {
         </div>
 
         {/* Competências */}
-        <div
-          className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 mb-12"
-        >
+        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 mb-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <MdOutlineEngineering className="w-8 h-8 text-blue-500" />
-              <span className="animated-gradient-text">Competências</span>
+              <span className="animated-gradient-text">{t('skills.competencies.title')}</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -150,13 +147,11 @@ export default function Skills() {
         </div>
 
         {/* Certificações */}
-        <div
-          className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8"
-        >
+        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <FaUsers className="w-8 h-8 text-blue-500" />
-              <span className="animated-gradient-text">Certificações</span>
+              <span className="animated-gradient-text">{t('skills.certifications.title')}</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -168,10 +163,8 @@ export default function Skills() {
                 <h4 className="font-medium text-gray-800 dark:text-white flex items-center gap-2">
                   {cert.name}
                   {cert.status === 'current' && (
-                    <span
-                      className="text-xs bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full"
-                    >
-                      Em andamento
+                    <span className="text-xs bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full">
+                      {t('skills.certifications.inProgress')}
                     </span>
                   )}
                 </h4>
@@ -184,25 +177,9 @@ export default function Skills() {
         </div>
 
         {/* Botão de navegação */}
-        <div
-          className="flex justify-center mt-16"
-        >
-          <a
-            href="#projects"
-            onClick={() => {
-              const element = document.getElementById('projects');
-              const headerOffset = 100;
-              if (element) {
-                const elementPosition = element.getBoundingClientRect().top;
-                window.scrollTo({
-                  top: elementPosition + window.pageYOffset - headerOffset,
-                  behavior: 'smooth'
-                });
-              }
-            }}
-            className="next-section-button"
-          >
-            Ver meus projetos
+        <div className="flex justify-center mt-16">
+          <a href="#projects" className="next-section-button">
+            {t('skills.cta')}
           </a>
         </div>
       </div>

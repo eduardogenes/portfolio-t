@@ -14,27 +14,22 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contact() {
-  // Referência para o formulário
+  const { t } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
-  
-  // Estados para controle de UI
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  // Inicializa o EmailJS com a chave pública
   useEffect(() => {
     emailjs.init('heb98utZ3Qz_MHPoR');
   }, []);
 
-  /**
-   * Manipula o envio do formulário
-   * @param e - Evento do formulário
-   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formRef.current) return;
 
     try {
@@ -59,13 +54,12 @@ export default function Contact() {
       formRef.current.reset();
     } catch (err) {
       console.error('Erro detalhado:', err);
-      setError('Ocorreu um erro ao enviar a mensagem. Tente novamente.');
+      setError(t('contact.form.error'));
     } finally {
       setLoading(false);
     }
   };
 
-  // Array com informações de contato
   const contactInfo = [
     {
       icon: <FiMail className="w-6 h-6" />,
@@ -84,7 +78,6 @@ export default function Contact() {
     }
   ];
 
-  // Configurações de animação para o container
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -95,7 +88,6 @@ export default function Contact() {
     }
   };
 
-  // Configurações de animação para os itens
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -112,7 +104,6 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6">
-        {/* Título da seção */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,10 +113,10 @@ export default function Contact() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <FiMail className="w-8 h-8 text-blue-500" />
-            <span className="animated-gradient-text">Contato</span>
+            <span className="animated-gradient-text">{t('contact.title')}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Entre em contato comigo para discutir oportunidades de colaboração
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -161,12 +152,12 @@ export default function Contact() {
               className="p-6 bg-blue-50 dark:bg-blue-900/30 rounded-xl"
             >
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
-                Horário de Trabalho
+                {t('contact.workingHours.title')}
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Segunda - Sexta
+                {t('contact.workingHours.days')}
                 <br />
-                8:00 - 18:00
+                {t('contact.workingHours.hours')}
               </p>
             </motion.div>
           </motion.div>
@@ -185,7 +176,7 @@ export default function Contact() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
-                Nome
+                {t('contact.form.name')}
               </label>
               <input
                 type="text"
@@ -201,7 +192,7 @@ export default function Contact() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
-                Email
+                {t('contact.form.email')}
               </label>
               <input
                 type="email"
@@ -217,7 +208,7 @@ export default function Contact() {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
-                Mensagem
+                {t('contact.form.message')}
               </label>
               <textarea
                 id="message"
@@ -243,7 +234,7 @@ export default function Contact() {
               ) : (
                 <>
                   <FiSend className="w-5 h-5" />
-                  Enviar Mensagem
+                  {t('contact.form.send')}
                 </>
               )}
             </motion.button>
@@ -254,7 +245,7 @@ export default function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-green-500 text-center"
               >
-                Mensagem enviada com sucesso!
+                {t('contact.form.success')}
               </motion.p>
             )}
 

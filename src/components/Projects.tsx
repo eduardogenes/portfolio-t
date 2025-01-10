@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const projects = [
   {
-    title: 'InfiniFlix',
-    description: 'Plataforma de streaming com catálogo de filmes e séries.',
+    title: 'projects.projects.infiniflix.title',
+    description: 'projects.projects.infiniflix.description',
     images: {
       default: '/images/infiniflix-logo.png',
       hover: '/images/infiniflix-thumb.png'
@@ -15,8 +16,8 @@ const projects = [
     live: 'https://infiniflix.vercel.app'
   },
   {
-    title: 'Dr. Care',
-    description: 'Site institucional para clínica médica com agendamento de consultas.',
+    title: 'projects.projects.drCare.title',
+    description: 'projects.projects.drCare.description',
     images: {
       default: '/images/drcare-logo.png',
       hover: '/images/drcare-thumb.png'
@@ -26,8 +27,8 @@ const projects = [
     live: 'https://dr-care-swart.vercel.app'
   },
   {
-    title: 'Orçamento Nano',
-    description: 'Aplicativo para gerenciamento de orçamento pessoal e controle financeiro.',
+    title: 'projects.projects.orcamentoNano.title',
+    description: 'projects.projects.orcamentoNano.description',
     images: {
       default: '/images/orcamento-thumb.png',
       hover: '/images/orcamento-thumb.png'
@@ -37,8 +38,8 @@ const projects = [
     live: 'https://orcamento-nano.vercel.app'
   },
   {
-    title: 'Calculadora',
-    description: 'Calculadora web com interface moderna e funcionalidades avançadas.',
+    title: 'projects.projects.calculadora.title',
+    description: 'projects.projects.calculadora.description',
     images: {
       default: '/images/calculadora-thumb.png',
       hover: '/images/calculadora-thumb.png'
@@ -48,8 +49,8 @@ const projects = [
     live: 'https://calculadora-ochre-ten.vercel.app'
   },
   {
-    title: 'Interactive Rating',
-    description: 'Componente interativo de avaliação com animações e feedback visual.',
+    title: 'projects.projects.interactiveRating.title',
+    description: 'projects.projects.interactiveRating.description',
     images: {
       default: '/images/rating-thumb.png',
       hover: '/images/rating-thumb.png'
@@ -58,7 +59,7 @@ const projects = [
     github: 'https://github.com/eduardogenes/interactive-rating-component',
     live: 'https://interactive-rating-component-ten-sigma.vercel.app'
   }
-]
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,7 +69,7 @@ const containerVariants = {
       staggerChildren: 0.2
     }
   }
-}
+};
 
 const cardVariants = {
   hidden: { y: 50, opacity: 0 },
@@ -81,10 +82,11 @@ const cardVariants = {
       stiffness: 100
     }
   }
-}
+};
 
 export default function Projects() {
   const [hoveredProjects, setHoveredProjects] = useState<{ [key: string]: boolean }>({});
+  const { t } = useLanguage();
 
   const handleMouseEnter = (projectTitle: string) => {
     setHoveredProjects(prev => ({
@@ -113,10 +115,10 @@ export default function Projects() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <FiFolder className="w-8 h-8 text-blue-500" />
-            <span className="animated-gradient-text">Projetos</span>
+            <span className="animated-gradient-text">{t('projects.title')}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
@@ -140,22 +142,13 @@ export default function Projects() {
                 onMouseEnter={() => handleMouseEnter(project.title)}
                 onMouseLeave={() => handleMouseLeave(project.title)}
               >
-                {/* Imagem de fundo (logo) */}
                 <img
-                  src={project.images.default}
-                  alt={project.title}
-                  className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                    project.images.default.includes('logo')
+                  src={hoveredProjects[project.title] ? project.images.hover : project.images.default}
+                  alt={t(project.title)}
+                  className={`w-full h-full transition-all duration-700 ease-in-out ${
+                    project.images.default.includes('logo') && !hoveredProjects[project.title]
                       ? 'object-cover bg-[#1B1F27] dark:bg-[#1B1F27]'
                       : 'object-cover'
-                  } ${hoveredProjects[project.title] ? 'opacity-0' : 'opacity-100'}`}
-                />
-                {/* Imagem de hover (thumbnail) */}
-                <img
-                  src={project.images.hover}
-                  alt={project.title}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-                    hoveredProjects[project.title] ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700" />
@@ -163,10 +156,10 @@ export default function Projects() {
 
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-                  {project.title}
+                  {t(project.title)}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {project.description}
+                  {t(project.description)}
                 </p>
                 
                 <motion.div
@@ -195,7 +188,7 @@ export default function Projects() {
                     className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                   >
                     <FiGithub className="w-5 h-5" />
-                    <span>Código</span>
+                    <span>{t('projects.code')}</span>
                   </motion.a>
                   {project.live && (
                     <motion.a
@@ -207,7 +200,7 @@ export default function Projects() {
                       className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       <FiExternalLink className="w-5 h-5" />
-                      <span>Demo</span>
+                      <span>{t('projects.demo')}</span>
                     </motion.a>
                   )}
                 </div>
@@ -223,7 +216,7 @@ export default function Projects() {
             transition={{ duration: 0.5 }}
           >
             <a href="#contact" className="next-section-button">
-              Vamos conversar
+              {t('projects.cta')}
             </a>
           </motion.div>
         </div>

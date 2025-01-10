@@ -1,7 +1,9 @@
 import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
   const socialLinks = [
     {
       icon: <FiGithub className="w-6 h-6" />,
@@ -79,7 +81,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
           >
-            Desenvolvedor Web Full Stack
+            {t('hero.title')}
           </motion.p>
 
           <motion.div
@@ -112,7 +114,7 @@ export default function Hero() {
               href="#about"
               className="inline-block px-8 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-300"
             >
-              Conheça meu trabalho
+              {t('hero.callToAction')}
             </a>
           </motion.div>
         </div>

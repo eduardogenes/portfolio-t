@@ -1,25 +1,25 @@
 import { motion } from 'framer-motion'
 import { FiCode, FiLayout, FiServer, FiUser } from 'react-icons/fi'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function About() {
+  const { t } = useLanguage();
+  
   const skills = [
     {
       icon: <FiCode className="w-8 h-8" />,
-      title: 'Front-end',
-      description:
-        'Desenvolvimento de interfaces web com React e TypeScript, buscando criar experiências responsivas e acessíveis.',
+      title: t('about.skills.frontend.title'),
+      description: t('about.skills.frontend.description'),
     },
     {
       icon: <FiServer className="w-8 h-8" />,
-      title: 'Back-end',
-      description:
-        'Conhecimento em Node.js e bancos de dados SQL, com foco em boas práticas de desenvolvimento.',
+      title: t('about.skills.backend.title'),
+      description: t('about.skills.backend.description'),
     },
     {
       icon: <FiLayout className="w-8 h-8" />,
-      title: 'UI Design',
-      description:
-        'Implementação de interfaces seguindo princípios de design e usabilidade com Tailwind CSS.',
+      title: t('about.skills.uiDesign.title'),
+      description: t('about.skills.uiDesign.description'),
     },
   ]
 
@@ -38,12 +38,10 @@ export default function About() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <FiUser className="w-8 h-8 text-blue-500" />
-            <span className="animated-gradient-text">Sobre Mim</span>
+            <span className="animated-gradient-text">{t('about.title')}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Desenvolvedor web focado em criar soluções práticas e funcionais.
-            Atualmente me dedicando ao desenvolvimento full-stack, sempre buscando
-            aprender e evoluir com cada projeto.
+            {t('about.description')}
           </p>
         </motion.div>
 
@@ -75,7 +73,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <a href="#skills" className="next-section-button">
-              Veja minhas habilidades
+              {t('about.skills.cta')}
             </a>
           </motion.div>
         </div>
