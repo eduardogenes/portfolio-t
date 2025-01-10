@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
+import { useState } from 'react';
 
 const projects = [
   {
     title: 'InfiniFlix',
     description: 'Plataforma de streaming com catálogo de filmes e séries.',
-    image: '/images/infiniflix.png',
+    images: {
+      default: '/images/infiniflix-logo.png',
+      hover: '/images/infiniflix-thumb.png'
+    },
     tech: ['React', 'Next.js', 'Tailwind'],
     github: 'https://github.com/eduardogenes/infiniflix',
     live: 'https://infiniflix.vercel.app'
@@ -13,7 +17,10 @@ const projects = [
   {
     title: 'Dr. Care',
     description: 'Site institucional para clínica médica com agendamento de consultas.',
-    image: '/images/dr-care.png',
+    images: {
+      default: '/images/drcare-logo.png',
+      hover: '/images/drcare-thumb.png'
+    },
     tech: ['React', 'Next.js', 'Styled Components'],
     github: 'https://github.com/eduardogenes/drCARE',
     live: 'https://dr-care-swart.vercel.app'
@@ -21,7 +28,10 @@ const projects = [
   {
     title: 'Orçamento Nano',
     description: 'Aplicativo para gerenciamento de orçamento pessoal e controle financeiro.',
-    image: '/images/orcamento.png',
+    images: {
+      default: '/images/orcamento-thumb.png',
+      hover: '/images/orcamento-thumb.png'
+    },
     tech: ['React', 'TypeScript', 'Node.js'],
     github: 'https://github.com/eduardogenes/orcamento-nano',
     live: 'https://orcamento-nano.vercel.app'
@@ -29,7 +39,10 @@ const projects = [
   {
     title: 'Calculadora',
     description: 'Calculadora web com interface moderna e funcionalidades avançadas.',
-    image: '/images/calculadora.png',
+    images: {
+      default: '/images/calculadora-thumb.png',
+      hover: '/images/calculadora-thumb.png'
+    },
     tech: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/eduardogenes/calculadora',
     live: 'https://calculadora-ochre-ten.vercel.app'
@@ -37,7 +50,10 @@ const projects = [
   {
     title: 'Interactive Rating',
     description: 'Componente interativo de avaliação com animações e feedback visual.',
-    image: '/images/rating.png',
+    images: {
+      default: '/images/rating-thumb.png',
+      hover: '/images/rating-thumb.png'
+    },
     tech: ['React', 'CSS', 'JavaScript'],
     github: 'https://github.com/eduardogenes/interactive-rating-component',
     live: 'https://interactive-rating-component-ten-sigma.vercel.app'
@@ -67,26 +83,23 @@ const cardVariants = {
   }
 }
 
-const imageVariants = {
-  rest: {
-    scale: 1,
-    transition: {
-      duration: 0.2,
-      type: 'tween',
-      ease: 'easeIn'
-    }
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.4,
-      type: 'tween',
-      ease: 'easeOut'
-    }
-  }
-}
-
 export default function Projects() {
+  const [hoveredProjects, setHoveredProjects] = useState<{ [key: string]: boolean }>({});
+
+  const handleMouseEnter = (projectTitle: string) => {
+    setHoveredProjects(prev => ({
+      ...prev,
+      [projectTitle]: true
+    }));
+  };
+
+  const handleMouseLeave = (projectTitle: string) => {
+    setHoveredProjects(prev => ({
+      ...prev,
+      [projectTitle]: false
+    }));
+  };
+
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
@@ -122,19 +135,31 @@ export default function Projects() {
               whileHover={{ y: -5 }}
               className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <motion.div
-                variants={imageVariants}
-                initial="rest"
-                whileHover="hover"
+              <div 
                 className="relative h-48 overflow-hidden"
+                onMouseEnter={() => handleMouseEnter(project.title)}
+                onMouseLeave={() => handleMouseLeave(project.title)}
               >
+                {/* Imagem de fundo (logo) */}
                 <img
-                  src={project.image}
+                  src={project.images.default}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                    project.images.default.includes('logo')
+                      ? 'object-cover bg-[#1B1F27] dark:bg-[#1B1F27]'
+                      : 'object-cover'
+                  } ${hoveredProjects[project.title] ? 'opacity-0' : 'opacity-100'}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
+                {/* Imagem de hover (thumbnail) */}
+                <img
+                  src={project.images.hover}
+                  alt={project.title}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+                    hoveredProjects[project.title] ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700" />
+              </div>
 
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
@@ -204,5 +229,5 @@ export default function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
