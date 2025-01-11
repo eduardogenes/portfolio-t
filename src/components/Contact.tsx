@@ -150,111 +150,97 @@ export default function Contact() {
 
             <motion.div
               variants={itemVariants}
-              className="p-6 bg-blue-50 dark:bg-blue-900/30 rounded-xl"
+              whileHover={{ 
+                scale: 1.02,
+                backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                transition: { duration: 0.2 }
+              }}
+              className="p-4 bg-white dark:bg-gray-900/80 rounded-xl cursor-default transition-colors shadow-sm"
             >
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
+              <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
                 {t('contact.workingHours.title')}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                {t('contact.workingHours.days')}
-                <br />
-                {t('contact.workingHours.hours')}
-              </p>
+              <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                <p>Segunda - Sexta</p>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 ml-3.5 text-sm">8:00 - 18:00</p>
             </motion.div>
           </motion.div>
 
           <motion.form
             ref={formRef}
             onSubmit={handleSubmit}
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <motion.div variants={itemVariants}>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                {t('contact.form.name')}
-              </label>
+            <div>
+              <label className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.form.name')}</label>
               <input
                 type="text"
-                id="name"
                 name="from_name"
+                placeholder={t('contact.form.placeholders.name')}
                 required
-                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:text-white"
+                className="w-full mt-1 px-4 py-2.5 bg-white/50 dark:bg-gray-900/50 border border-gray-200/80 dark:border-gray-700/80 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600"
               />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                {t('contact.form.email')}
-              </label>
+            </div>
+            <div>
+              <label className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.form.email')}</label>
               <input
                 type="email"
-                id="email"
                 name="from_email"
+                placeholder={t('contact.form.placeholders.email')}
                 required
-                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:text-white"
+                className="w-full mt-1 px-4 py-2.5 bg-white/50 dark:bg-gray-900/50 border border-gray-200/80 dark:border-gray-700/80 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600"
               />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                {t('contact.form.message')}
-              </label>
+            </div>
+            <div>
+              <label className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.form.message')}</label>
               <textarea
-                id="message"
                 name="message"
+                placeholder={t('contact.form.placeholders.message')}
                 required
                 rows={4}
-                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:text-white resize-none"
+                className="w-full mt-1 px-4 py-2.5 bg-white/50 dark:bg-gray-900/50 border border-gray-200/80 dark:border-gray-700/80 text-gray-900 dark:text-white rounded-lg resize-none focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600"
               />
-            </motion.div>
+            </div>
 
-            <motion.button
-              variants={itemVariants}
-              type="submit"
-              disabled={loading}
-              className={`w-full px-6 py-3 flex items-center justify-center gap-2 text-white rounded-lg transition-all duration-300 ${
-                loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
-              }`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {loading ? (
-                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  <FiSend className="w-5 h-5" />
-                  {t('contact.form.send')}
-                </>
-              )}
-            </motion.button>
-
+            <div className="flex justify-center pt-2">
+              <motion.button
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center px-8 py-3 bg-blue-500/90 hover:bg-blue-600/90 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <>
+                    <div className="w-5 h-5 border-t-2 border-white/80 rounded-full animate-spin mr-2" />
+                    {t('contact.form.sending')}
+                  </>
+                ) : (
+                  <>
+                    <FiSend className="w-5 h-5 mr-2" />
+                    {t('contact.form.send')}
+                  </>
+                )}
+              </motion.button>
+            </div>
+            
             {success && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-green-500 text-center"
+                className="text-green-500/90 text-center text-sm"
               >
                 {t('contact.form.success')}
               </motion.p>
             )}
-
+            
             {error && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-red-500 text-center"
+                className="text-red-500/90 text-center text-sm"
               >
                 {error}
               </motion.p>
