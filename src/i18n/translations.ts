@@ -142,7 +142,6 @@ export const translations = {
     contact: {
       title: "Contact",
       subtitle: "Let's work together?",
-      // Subseção do formulário
       form: {
         name: "Name",
         email: "Email",
@@ -150,9 +149,13 @@ export const translations = {
         send: "Send Message",
         sending: "Sending...",
         success: "Message sent successfully!",
-        error: "An error occurred. Please try again."
+        error: "An error occurred. Please try again.",
+        placeholders: {
+          name: "Your name",
+          email: "your.email@example.com",
+          message: "Tell me about your project or idea..."
+        }
       },
-      // Subseção de horário de trabalho
       workingHours: {
         title: "Working Hours",
         days: "Monday - Friday",
@@ -300,7 +303,6 @@ export const translations = {
     contact: {
       title: "Contato",
       subtitle: "Vamos trabalhar juntos?",
-      // Subseção do formulário
       form: {
         name: "Nome",
         email: "Email",
@@ -308,9 +310,13 @@ export const translations = {
         send: "Enviar Mensagem",
         sending: "Enviando...",
         success: "Mensagem enviada com sucesso!",
-        error: "Ocorreu um erro. Tente novamente."
+        error: "Ocorreu um erro. Tente novamente.",
+        placeholders: {
+          name: "Seu nome",
+          email: "seu.email@exemplo.com",
+          message: "Me conte sobre seu projeto ou ideia..."
+        }
       },
-      // Subseção de horário de trabalho
       workingHours: {
         title: "Horário de Trabalho",
         days: "Segunda - Sexta",
