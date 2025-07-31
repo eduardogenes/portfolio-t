@@ -12,13 +12,24 @@ export default function Projects() {
   // Array com informações dos projetos
   const projects = [
     {
+      title: 'projects.projects.garimpeiroGenes.title',
+      description: 'projects.projects.garimpeiroGenes.description',
+      images: {
+        default: '/images/garimpeiro-genes-logo.png',
+        hover: '/images/garimpeiro-genes-thumb.png'
+      },
+      tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+      github: 'https://github.com/eduardogenes/geneseek',
+      live: 'https://geneseek.vercel.app/'
+    },
+    {
       title: 'projects.projects.infiniflix.title',
       description: 'projects.projects.infiniflix.description',
       images: {
         default: '/images/infiniflix-logo.png',
         hover: '/images/infiniflix-thumb.png'
       },
-      tech: ['React', 'Next.js', 'Tailwind'],
+      tech: ['React', 'Next.js', 'Tailwind CSS'],
       github: 'https://github.com/eduardogenes/infiniflix',
       live: 'https://infiniflix.vercel.app'
     },
@@ -74,7 +85,7 @@ export default function Projects() {
   // Variantes de animação para as imagens
   const imageVariants = {
     enter: { opacity: 1 },
-    center: { 
+    center: {
       opacity: 0,
       transition: {
         duration: 0.3,
@@ -150,22 +161,20 @@ export default function Projects() {
               key={project.title}
               variants={cardVariants}
               whileHover={{ y: -5 }}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              // 1. O card é um container flexível com direção de coluna
+              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
-              {/* Container da imagem com efeito de hover */}
-              <div 
+              {/* Container da imagem com efeito de hover (NENHUMA ALTERAÇÃO) */}
+              <div
                 className="relative h-48 overflow-hidden"
                 onMouseEnter={() => setHoveredProjects(prev => ({ ...prev, [project.title]: true }))}
                 onMouseLeave={() => setHoveredProjects(prev => ({ ...prev, [project.title]: false }))}
               >
-                {/* Imagem de fundo (hover) */}
                 <img
                   src={project.images.hover}
                   alt={t(project.title)}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                
-                {/* Logo sobreposta */}
                 <AnimatePresence mode="wait">
                   {!hoveredProjects[project.title] && (
                     <motion.div
@@ -188,68 +197,69 @@ export default function Projects() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               {/* Informações do projeto */}
-              <div className="p-6">
+              {/* 2. Este container também é flexível e crescerá para preencher o espaço */}
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
                   {t(project.title)}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                {/* 3. A classe 'flex-grow' é aplicada ao parágrafo da descrição */}
+                <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                   {t(project.description)}
                 </p>
-                
-                {/* Lista de tecnologias usadas */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex flex-wrap gap-2 mb-4"
-                >
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </motion.div>
 
-                {/* Links do projeto */}
-                <div className="flex gap-4">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                {/* 4. Este bloco que contém as tecnologias e links será empurrado para o final */}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-700/50">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex flex-wrap gap-2 mb-4"
                   >
-                    <FiGithub className="w-5 h-5" />
-                    <span>{t('projects.code')}</span>
-                  </motion.a>
-                  {project.live && (
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </motion.div>
+                  <div className="flex gap-4">
                     <motion.a
-                      href={project.live}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
-                      <FiExternalLink className="w-5 h-5" />
-                      <span>{t('projects.demo')}</span>
+                      <FiGithub className="w-5 h-5" />
+                      <span>{t('projects.code')}</span>
                     </motion.a>
-                  )}
+                    {project.live && (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <FiExternalLink className="w-5 h-5" />
+                        <span>{t('projects.demo')}</span>
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-        
+
         {/* Botão "Vamos conversar" com animação */}
         <div className="flex justify-center mt-12">
           <motion.div

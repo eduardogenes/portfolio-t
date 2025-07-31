@@ -112,6 +112,10 @@ export const translations = {
       subtitle: "Some of the projects I've developed, demonstrating my skills and experience",
       projects: {
         // Detalhes de cada projeto
+        garimpeiroGenes: {
+          title: "Garimpeiro Genes",
+          description: "An intelligent prospector for real estate opportunities from Caixa Econômica Federal with modern visualization."
+        },
         infiniflix: {
           title: "InfiniFlix",
           description: "Streaming platform with movies and series catalog."
@@ -273,6 +277,10 @@ export const translations = {
       subtitle: "Alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência",
       projects: {
         // Detalhes de cada projeto
+        garimpeiroGenes: {
+          title: "Garimpeiro Genes",
+          description: "Garimpeiro de oportunidades em imóveis da Caixa com análise inteligente e visualização moderna."
+        },
         infiniflix: {
           title: "InfiniFlix",
           description: "Plataforma de streaming com catálogo de filmes e séries."
