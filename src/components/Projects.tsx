@@ -23,6 +23,17 @@ export default function Projects() {
       live: 'https://geneseek.vercel.app/'
     },
     {
+      title: 'projects.projects.genesTomato.title',
+      description: 'projects.projects.genesTomato.description',
+      images: {
+        default: '/images/genes-tomato-logo.png',
+        hover: '/images/genes-tomato-thumb.png'
+      },
+      tech: ['React', 'Vite', 'TypeScript'],
+      github: 'https://github.com/eduardogenes/GenesTomato',
+      live: 'https://genes-tomato.vercel.app'
+    },
+    {
       title: 'projects.projects.infiniflix.title',
       description: 'projects.projects.infiniflix.description',
       images: {

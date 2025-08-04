@@ -116,6 +116,10 @@ export const translations = {
           title: "Garimpeiro Genes",
           description: "An intelligent prospector for real estate opportunities from Caixa Econômica Federal with modern visualization."
         },
+        genesTomato: {
+          title: "GenesTomato",
+          description: "A simple and modern Pomodoro timer, built to help maintain focus and increase productivity."
+        },
         infiniflix: {
           title: "InfiniFlix",
           description: "Streaming platform with movies and series catalog."
@@ -280,6 +284,10 @@ export const translations = {
         garimpeiroGenes: {
           title: "Garimpeiro Genes",
           description: "Garimpeiro de oportunidades em imóveis da Caixa com análise inteligente e visualização moderna."
+        },
+        genesTomato: {
+          title: "GenesTomato",
+          description: "Um temporizador Pomodoro simples e moderno, construído para ajudar a manter o foco e aumentar a produtividade."
         },
         infiniflix: {
           title: "InfiniFlix",
